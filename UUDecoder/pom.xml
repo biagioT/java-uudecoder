@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>it.tozzi.mail</groupId>
+	<artifactId>uudecoder</artifactId>
+	<version>0.0.1</version>
+	<name>UUDecoder</name>
+	<description>Extracts uuencoded attachments from (email) text message</description>
+
+	<developers>
+		<developer>
+			<id>biagio.tozzi</id>
+			<name>Biagio Placido Tozzi</name>
+			<email>biagio.tozzi@gmail.com</email>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<sources.encoding>UTF-8</sources.encoding>
+		<java.version>11</java.version>
+		
+		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<javax.mail.version>1.6.2</javax.mail.version>
+		<slf4j.version>1.7.28</slf4j.version>
+		<lombok.version>1.18.10</lombok.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>${javax.mail.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<release>${java.version}</release>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
