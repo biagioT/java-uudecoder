@@ -221,7 +221,7 @@ public class UUDecoder {
 			}
 
 			String fileName = firstLine.substring(9);
-			if (fileName == null || fileName.trim().isEmpty()) {
+			if (fileName == null || fileName.isBlank()) {
 				logger.warn("File name not present");
 				return false;
 			}
