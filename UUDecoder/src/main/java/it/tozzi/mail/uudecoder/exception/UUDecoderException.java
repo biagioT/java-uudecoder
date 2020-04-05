@@ -12,11 +12,11 @@ public class UUDecoderException extends Exception {
 	private static final long serialVersionUID = -8770023882303941631L;
 
 	@Getter
-	private String errore;
+	private String error;
 	
-	public UUDecoderException(String errore, Exception e) {
+	public UUDecoderException(String error, Exception e) {
 		super(e);
-		this.errore = errore;
+		this.error = error;
 	}
 	
 }
