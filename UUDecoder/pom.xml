@@ -6,7 +6,7 @@
 	
 	<groupId>it.tozzi.mail</groupId>
 	<artifactId>uudecoder</artifactId>
-	<version>0.0.2</version>
+	<version>0.0.3</version>
 	<name>UUDecoder</name>
 	<description>Extracts uuencoded attachments from (email) text message</description>
 
