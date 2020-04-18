@@ -19,6 +19,7 @@
 	</developers>
 
 	<properties>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sources.encoding>UTF-8</sources.encoding>
 		<java.version>11</java.version>
@@ -58,7 +59,9 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
-					<release>${java.version}</release>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<encoding>${sources.encoding}</encoding>
 				</configuration>
 			</plugin>
 		</plugins>
