@@ -6,7 +6,7 @@
 	
 	<groupId>it.tozzi.mail</groupId>
 	<artifactId>uudecoder</artifactId>
-	<version>0.0.3</version>
+	<version>1.0.0</version>
 	<name>UUDecoder</name>
 	<description>Extracts uuencoded attachments from (email) text message</description>
 
@@ -22,7 +22,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<sources.encoding>UTF-8</sources.encoding>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 		
 		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
 		<javax.mail.version>1.6.2</javax.mail.version>
