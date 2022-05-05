@@ -21,21 +21,18 @@ import javax.activation.FileTypeMap;
 import javax.mail.internet.MimeUtility;
 import javax.mail.util.ByteArrayDataSource;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import it.tozzi.mail.uudecoder.exception.UUDecoderException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
  * @author biagio.tozzi
  *
  */
+@Slf4j
 public class UUDecoder {
-
-	private static final Logger logger = LoggerFactory.getLogger(UUDecoder.class);
 
 	private static final String CONTENT_TYPE_OCETSTREAM = "application/octet-stream";
 
@@ -175,7 +172,7 @@ public class UUDecoder {
 					res.add(new UUDecodedAttachment(fileName, createDataSource(fileName, isDecoded)));
 
 				} catch (Exception e) {
-					logger.error("Error during decoding of attachment {}", fileName, e);
+					log.error("Error during decoding of attachment {}", fileName, e);
 					throw new UUDecoderException("Error during decoding of attachment " + fileName, e);
 
 				} finally {
@@ -211,25 +208,25 @@ public class UUDecoder {
 				mode = Integer.parseInt(firstLine.substring(6, 9));
 
 			} catch (NumberFormatException e) {
-				logger.warn("Permissions mode not valid", e);
+				log.warn("Permissions mode not valid", e);
 				return false;
 			}
 
 			if (!isOctal(mode)) {
-				logger.warn("Permissions mode not in octal format");
+				log.warn("Permissions mode not in octal format");
 				return false;
 			}
 
 			String fileName = firstLine.substring(9);
 			if (fileName == null || fileName.trim().isEmpty()) {
-				logger.warn("File name not present");
+				log.warn("File name not present");
 				return false;
 			}
 
 			return true;
 
 		} catch (Exception e) {
-			logger.error("Error during uuencoded content check", e);
+			log.error("Error during uuencoded content check", e);
 			throw new UUDecoderException("Error during uuencoded content check", e);
 
 		} finally {
@@ -246,7 +243,7 @@ public class UUDecoder {
 			return reader.readLine().substring(9).trim();
 
 		} catch (Exception e) {
-			logger.error("Error during reading file name", e);
+			log.error("Error during reading file name", e);
 			return getVersionedFileName("unnamed",
 					res.stream().map(uda -> uda.getFileName()).collect(Collectors.toList()), 1);
 
