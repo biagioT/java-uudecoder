@@ -22,6 +22,7 @@ import javax.mail.internet.MimeUtility;
 import javax.mail.util.ByteArrayDataSource;
 
 import it.tozzi.mail.uudecoder.exception.UUDecoderException;
+import it.tozzi.mail.uudecoder.exception.model.UUDecodedBean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -37,11 +38,35 @@ public class UUDecoder {
 	private static final String CONTENT_TYPE_OCETSTREAM = "application/octet-stream";
 
 	/**
-	 * Extracts uudecoded attachments from EML text content
+	 * Extracts uudecoded content and attachments from EML text uuencoded content
+	 * 
+	 * @param content EML text content (text/plain)
+	 * @return {@link UUDecodedBean}
+	 * @throws UUDecoderException
+	 */
+	public static UUDecodedBean decode(String content) throws UUDecoderException {
+		
+		UUDecodedBean decodedBean = new UUDecodedBean();
+		
+		if (!UUDecoder.containsUUEncodedAttachments(content)) {
+			log.info("UUEncoding not detected");
+			decodedBean.setContent(content);
+			return decodedBean;
+		}
+		
+		String newContent = content.substring(0, UUDecoder.getNextBeginIndex(content));
+		decodedBean.setContent(newContent);
+		List<UUDecodedAttachment> decodedAttachments = UUDecoder.getUUDecodedAttachments(content.toString());
+		decodedBean.getAttachments().addAll(decodedAttachments);		
+		return decodedBean;
+	}
+
+	/**
+	 * Extracts uudecoded attachments from EML text uuencoded content
 	 * 
 	 * @param content EML text content (text/plain)
 	 * @return List of {@link UUDecodedAttachment}
-	 * @throws UUDecoderException 
+	 * @throws UUDecoderException
 	 */
 	public static List<UUDecodedAttachment> getUUDecodedAttachments(String content) throws UUDecoderException {
 		List<UUDecodedAttachment> res = new ArrayList<>();
@@ -54,13 +79,13 @@ public class UUDecoder {
 	 * 
 	 * @param content EML text content (text/plain)
 	 * @return next uuencoded string
-	 * @throws UUDecoderException 
+	 * @throws UUDecoderException
 	 */
 	public static String getNextUUEncodedString(String content) throws UUDecoderException {
 
 		if (content == null)
 			return null;
-		
+
 		int beginIndex = content.indexOf("begin ");
 		int endIndex = content.indexOf("end");
 
@@ -85,13 +110,13 @@ public class UUDecoder {
 	 * 
 	 * @param content EML text content (text/plain)
 	 * @return first index containing the identifier <i>begin</i>
-	 * @throws UUDecoderException 
+	 * @throws UUDecoderException
 	 */
 	public static int getNextBeginIndex(String content) throws UUDecoderException {
 
 		if (content == null)
 			return -1;
-		
+
 		int beginIndex = content.indexOf("begin ");
 		int endIndex = content.indexOf("end");
 
@@ -116,13 +141,13 @@ public class UUDecoder {
 	 * 
 	 * @param content EML text content (text/plain)
 	 * @return true if the content has uuencoded attachments, false otherwise
-	 * @throws UUDecoderException 
+	 * @throws UUDecoderException
 	 */
 	public static boolean containsUUEncodedAttachments(String content) throws UUDecoderException {
 
 		if (content == null)
 			return false;
-		
+
 		int beginIndex = content.indexOf("begin ");
 		int endIndex = content.indexOf("end");
 
@@ -143,11 +168,12 @@ public class UUDecoder {
 
 	}
 
-	private static void getUUDecodedAttachments(String content, List<UUDecodedAttachment> res) throws UUDecoderException {
+	private static void getUUDecodedAttachments(String content, List<UUDecodedAttachment> res)
+			throws UUDecoderException {
 
 		if (content == null)
 			return;
-		
+
 		int beginIndex = content.indexOf("begin ");
 		int endIndex = content.indexOf("end");
 
