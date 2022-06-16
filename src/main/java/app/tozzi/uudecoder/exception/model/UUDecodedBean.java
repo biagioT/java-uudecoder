@@ -1,9 +1,9 @@
-package it.tozzi.mail.uudecoder.exception.model;
+package app.tozzi.uudecoder.exception.model;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import it.tozzi.mail.uudecoder.UUDecoder.UUDecodedAttachment;
+import app.tozzi.uudecoder.UUDecoder.UUDecodedAttachment;
 import lombok.Data;
 
 /**

@@ -1,4 +1,4 @@
-package it.tozzi.mail.uudecoder.exception;
+package app.tozzi.uudecoder.exception;
 
 /**
  * 

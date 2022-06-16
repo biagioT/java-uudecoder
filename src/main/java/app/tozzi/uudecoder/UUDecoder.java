@@ -1,4 +1,4 @@
-package it.tozzi.mail.uudecoder;
+package app.tozzi.uudecoder;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
@@ -21,8 +21,8 @@ import javax.activation.FileTypeMap;
 import javax.mail.internet.MimeUtility;
 import javax.mail.util.ByteArrayDataSource;
 
-import it.tozzi.mail.uudecoder.exception.UUDecoderException;
-import it.tozzi.mail.uudecoder.exception.model.UUDecodedBean;
+import app.tozzi.uudecoder.exception.UUDecoderException;
+import app.tozzi.uudecoder.exception.model.UUDecodedBean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
