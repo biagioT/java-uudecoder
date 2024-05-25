@@ -1,4 +1,4 @@
-package app.tozzi.uudecoder.exception.model;
+package app.tozzi.uudecoder.model;
 
 import java.util.ArrayList;
 import java.util.List;
