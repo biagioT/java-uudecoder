@@ -9,7 +9,7 @@ Extract text and attachments from an uuencoded mail.
 <dependency>
 	<groupId>app.tozzi</groupId>
 	<artifactId>uudecoder</artifactId>
-	<version>3.0.0</version>
+	<version>4.0.0</version>
 </dependency>
 ```
 
